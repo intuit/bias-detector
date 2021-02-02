@@ -27,7 +27,7 @@ There are many metrics which can possibly be used to detect Bias, we currently s
 
 ```
 from bias_detector.BiasDetector import BiasDetector
-bias_report = BiasDetector().get_bias_report(first_names=first_names, last_names=last_names, zip_codes=zip_codes, y_true=y_true, y_pred=y_pred)
+bias_report = BiasDetector().get_bias_report(first_names=first_names, last_names=last_names, zip_codes=zip_codes, y_true=y_true, y_pred=y_pred, country='US')
 bias_report.plot_summary()
 bias_report.print_summary()
 ```
