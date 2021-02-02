@@ -1,0 +1,3 @@
+include bias_detector/resources/p_gender_given_first_name.csv
+include bias_detector/resources/p_race_given_first_name.csv
+include bias_detector/resources/p_first_name_given_race.csv
