@@ -20,8 +20,7 @@ There are many metrics which can possibly be used to detect Bias, we currently s
 **Install the package**
 
 ```
-!pip install --upgrade bias_detector
-
+!pip install git+https://github.com/intuit/bias-detector
 ```
 
 **Calculate bias metrics based on users data, y_true and y_pred:** 
