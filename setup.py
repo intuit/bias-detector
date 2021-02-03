@@ -2,19 +2,33 @@
 
 import setuptools
 
+VERSION = "0.0.1"
 
 with open('README.md') as f:
     README = f.read()
 
+class VerifyVersionCommand(install):
+    """Custom command to verify that the git tag matches our version"""
+    description = 'verify that the git tag matches our version'
+
+    def run(self):
+        tag = os.getenv('CIRCLE_TAG')
+
+        if tag != VERSION:
+            info = "Git tag: {0} does not match the version of this app: {1}".format(
+                tag, VERSION
+            )
+            sys.exit(info)
+
 setuptools.setup(
     author="Elhanan Mishraky, Shir Lador, Aviv Benarie",
     author_email="elhanan_mishraky@intuit.com, shir_lador@intuit.com, aviv_benarie@intuit.com",
-    name='bias-detector',
+    name='bias_detector',
     license="MIT",
     description='bias-detector detects bias in ML models',
-    version='0.0.1',
+    version=VERSION,
     long_description=README,
-    url='https://github.com/bias-detector',
+    url='https://github.com/intuit/bias-detector',
     packages=setuptools.find_packages(),
     python_requires=">=3.6",
     install_requires=['numpy==1.19.4', 'pandas==1.1.5', 'scikit-learn==0.23.2', 'matplotlib==3.3.3', 'scipy==1.5.4', 'surgeo==1.0.2', 'nltk==3.5'],
@@ -37,4 +51,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     include_package_data=True,
+    cmdclass={
+        'verify': VerifyVersionCommand,
+    }
 )
