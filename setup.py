@@ -23,7 +23,7 @@ class VerifyVersionCommand(install):
 setuptools.setup(
     author="Elhanan Mishraky, Shir Lador, Aviv Benarie",
     author_email="elhanan_mishraky@intuit.com, shir_lador@intuit.com, aviv_benarie@intuit.com",
-    name='bias_detector',
+    name='bias-detector',
     license="MIT",
     description='bias-detector detects bias in ML models',
     version=VERSION,
