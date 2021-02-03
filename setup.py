@@ -2,6 +2,8 @@
 
 import setuptools, os
 
+from setuptools.command.install import install
+
 VERSION = "0.0.1"
 
 with open('README.md') as f:
