@@ -1,3 +1,8 @@
+
+
+[![codecov](https://codecov.io/gh/intuit/bias-detector/branch/main/graph/badge.svg)](https://codecov.io/gh/intuit/bias-detector)
+[![CircleCI](https://circleci.com/gh/intuit/bias-detector.svg?style=svg)](https://circleci.com/gh/intuit/bias-detector)
+
 # <img src="bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
 [//]: # (description)
 Bias detector is a python package for detecting bias in machine learning models used for making high stakes decisions.
