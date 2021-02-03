@@ -12,7 +12,7 @@ setuptools.setup(
     name='bias-detector',
     license="MIT",
     description='bias-detector detects bias in ML models',
-    version='0.0.0',
+    version='0.0.1',
     long_description=README,
     url='https://github.com/bias-detector',
     packages=setuptools.find_packages(),
