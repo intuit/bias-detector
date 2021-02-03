@@ -4,7 +4,7 @@ import setuptools, os
 
 from setuptools.command.install import install
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 with open('README.md') as f:
     README = f.read()
