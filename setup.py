@@ -1,6 +1,6 @@
 """Setup for the chocobo package."""
 
-import setuptools
+import setuptools, os
 
 VERSION = "0.0.1"
 
