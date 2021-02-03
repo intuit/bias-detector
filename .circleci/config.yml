@@ -1,0 +1,80 @@
+version: 2.1
+workflows:
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.7
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dependecy-cache-{{ checksum "setup.py" }}-{{ checksum "Makefile" }}
+      - run:
+          name: install python dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            make dev
+      - save_cache:
+          paths:
+            - "venv"
+          key: v1-dependecy-cache-{{ checksum "setup.py" }}-{{ checksum "Makefile" }} 
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            make test
+            codecov
+      - store_artifacts:
+          path: htmlcov/
+  deploy:
+    docker:
+      - image: cimg/python:3.7
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dependecy-cache-{{ checksum "setup.py" }}-{{ checksum "Makefile" }} 
+      - run:
+          name: install python dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            make dev
+      - save_cache:
+          paths:
+            - "venv"
+          key: v1-dependecy-cache-{{ checksum "setup.py" }}-{{ checksum "Makefile" }} 
+      - run:
+          name: verify git tag vs. version
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            python setup.py verify
+      - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+      - run:
+          name: create packages
+          command: |
+            make package
+      - run:
+          name: upload to pypi
+          command: |
+            . venv/bin/activate
+            twine upload dist/*
