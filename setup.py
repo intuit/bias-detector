@@ -30,6 +30,7 @@ setuptools.setup(
     description='bias-detector detects bias in ML models',
     version=VERSION,
     long_description=README,
+    long_description_content_type='text/markdown',
     url='https://github.com/intuit/bias-detector',
     packages=setuptools.find_packages(),
     python_requires=">=3.6",
