@@ -11,7 +11,7 @@ clean:
 	rm -rf dist/*
 
 dev:
-	pip install -U pip setuptools twine
+	pip install --upgrade pip tox twine setuptools wheel coverage
 	pip install -r requirements.txt
 	pip install -e .
 
