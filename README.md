@@ -42,9 +42,9 @@ bias_report.plot_summary()
 **bias_report.plot_summary()**
 
 <p float="left" width="100%">
-    <img src="bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="33%" />
-    <img src="bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="33%" />
-    <img src="bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="33%" />
+    <img src="bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="30%" />
+    <img src="bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="30%" />
+    <img src="bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="30%" />
 </p>
 
 **bias_report.print_summary()**
@@ -54,8 +54,8 @@ bias_report.plot_summary()
 **bias_report.plot_groups()**
 
 <p float="left" width="100%">
-  <img src="bias_detector/static/bias_report_gender_pie.png" width="33%" />
-  <img src="bias_detector/static/bias_report_race_pie.png" width="33%" />
+  <img src="bias_detector/static/bias_report_gender_pie.png" width="30%" />
+  <img src="bias_detector/static/bias_report_race_pie.png" width="30%" />
 </p>
 
 ### Contributing
