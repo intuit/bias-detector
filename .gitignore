@@ -3,3 +3,5 @@ dist
 .eggs
 *.egg-info
 build
+*checkpoint.ipynb
+/.idea
