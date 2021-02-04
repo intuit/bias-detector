@@ -4,7 +4,7 @@
 [![CircleCI](https://circleci.com/gh/intuit/bias-detector.svg?style=svg)](https://circleci.com/gh/intuit/bias-detector)
 [![PyPI version](https://badge.fury.io/py/bias-detector.svg)](https://badge.fury.io/py/bias-detector)
 
-# <img src="bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
+# <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
 [//]: # (description)
 Bias detector is a python package for detecting bias in machine learning models used for making high stakes decisions.
 
@@ -45,9 +45,9 @@ bias_report.plot_summary()
 **bias_report.plot_summary()**
 
 <p float="left" width="100%">
-    <img src="bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="30%" />
-    <img src="bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="30%" />
-    <img src="bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="30%" />
+    <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="30%" />
+    <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="30%" />
+    <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="30%" />
 </p>
 
 **bias_report.print_summary()**
@@ -57,8 +57,8 @@ bias_report.plot_summary()
 **bias_report.plot_groups()**
 
 <p float="left" width="100%">
-  <img src="bias_detector/static/bias_report_gender_pie.png" width="30%" />
-  <img src="bias_detector/static/bias_report_race_pie.png" width="30%" />
+  <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_gender_pie.png" width="30%" />
+  <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_race_pie.png" width="30%" />
 </p>
 
 ### Contributing
