@@ -10,7 +10,7 @@ curr_path = os.path.dirname(os.path.realpath(__file__)) if '__file__' in globals
 
 bias_report = BiasDetector().get_bias_report(first_names=first_names_mock,
                                             last_names=last_names_mock, y_true=y_true_mock, y_pred=y_pred_mock,
-                                            y_scores=y_scores_mock, privileged_race='white')
+                                            y_scores=y_scores_mock, privileged_race='white', country='US')
 
 from unittest.mock import patch
 

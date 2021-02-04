@@ -51,7 +51,7 @@ class BiasDetector:
                         emails: Sequence[str] = None,
                         y_true: Sequence[float] = None,
                         y_pred: Sequence[float] = None,
-                        country: str = 'US',
+                        country: str = None,
                         detect_gender_bias: bool = True,
                         detect_race_bias: bool = True,
                         **kwargs: dict) -> BiasReport:
