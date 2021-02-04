@@ -6,7 +6,7 @@
 
 # <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
 [//]: # (description)
-Bias detector is a python package for detecting bias in machine learning models used for making high stakes decisions.
+Bias Detector is a python package for detecting bias in machine learning models used for making high stakes decisions.
 
 Based on email address/first and last name/zip code the package analyzes the probability of the user belonging to different genders/races. Then, the model predictions per gender/race are compared using various bias metrics.
 
