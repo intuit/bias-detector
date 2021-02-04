@@ -8,9 +8,9 @@ from bias_detector.BiasReport import BiasReport
 
 curr_path = os.path.dirname(os.path.realpath(__file__)) if '__file__' in globals() else os.getcwd()
 
-bias_report = BiasDetector().get_bias_report(first_names=first_names_mock,
+bias_report = BiasDetector(country='US').get_bias_report(first_names=first_names_mock,
                                             last_names=last_names_mock, y_true=y_true_mock, y_pred=y_pred_mock,
-                                            y_scores=y_scores_mock, privileged_race='white', country='US')
+                                            y_scores=y_scores_mock, privileged_race='white')
 
 from unittest.mock import patch
 

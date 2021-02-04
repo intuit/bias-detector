@@ -44,7 +44,7 @@ def mock_emails(first_names_mock, last_names_mock, n: int=10000):
 
 
 def mock_y_scores_and_y_pred(first_names_mock, n: int=10000):
-    p_groups = BiasDetector().get_p_groups(first_names_mock)
+    p_groups = BiasDetector(country='US').get_p_groups(first_names_mock)
     y_scores = np.array([random.uniform(0, 1) if i % 10 != 0 else random.uniform(p_groups.at[i, 'male'], 1) for i in range(n)])
     y_scores = pd.Series(y_scores).rename('y_score')
     y_pred = pd.Series(y_scores >= 0.5).astype(int).rename('y_pred')
