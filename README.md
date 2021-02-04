@@ -54,8 +54,8 @@ bias_report.plot_summary()
 **bias_report.plot_groups()**
 
 <p float="left" width="100%">
-  <img src="bias_detector/static/bias_report_gender_pie.png" width="50%" />
-  <img src="bias_detector/static/bias_report_race_pie.png" width="50%" />
+  <img src="bias_detector/static/bias_report_gender_pie.png" width="33%" />
+  <img src="bias_detector/static/bias_report_race_pie.png" width="33%" />
 </p>
 
 ### Contributing
