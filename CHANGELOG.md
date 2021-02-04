@@ -4,3 +4,5 @@
     * Replaced Api with API
 * Version 0.0.4
     * Forced providing country parameter to BiasDetector#get_bias_report
+* Version 0.0.5
+    * Updated PyPi description

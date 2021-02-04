@@ -4,7 +4,7 @@ import setuptools, os
 
 from setuptools.command.install import install
 
-VERSION = "0.0.4"
+VERSION = "0.0.5"
 
 with open('README.md') as f:
     README = f.read()
@@ -27,7 +27,7 @@ setuptools.setup(
     author_email="elhanan_mishraky@intuit.com, shir_lador@intuit.com, aviv_benarie@intuit.com",
     name='bias-detector',
     license="MIT",
-    description='bias-detector detects bias in ML models',
+    description='Bias Detector is a python package for detecting bias in machine learning models',
     version=VERSION,
     long_description=README,
     long_description_content_type='text/markdown',
