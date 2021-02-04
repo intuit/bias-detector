@@ -21,6 +21,9 @@ There are many metrics which can possibly be used to detect Bias, we currently s
 2. Equal Opportunity - tests whether the True Positive Rates of 2 groups are equal (how likely is the model to predict correctly the positive class for each group).
 2. Predictive Equality - tests whether there False Positive Rates of 2 groups are equal (how likely is the model to predict incorrectly the positive class for each group).
 
+### Attention
+The Bias Detector is based on statistical data from the US and therefore should be used only with US originated data. We hope to support more countries in the future.
+
 ### Usage
 
 **Install the package**
