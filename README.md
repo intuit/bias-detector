@@ -39,7 +39,7 @@ bias_report.plot_summary()
 
 **Example for the report output:** 
 
-### bias_report.plot_summary()
+**bias_report.plot_summary()**
 
 <p float="left" width="100%">
     <img src="bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="33%" />
@@ -47,11 +47,11 @@ bias_report.plot_summary()
     <img src="bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="33%" />
 </p>
 
-### bias_report.print_summary()
+**bias_report.print_summary()**
 
 <ul><li>Statistical Parity:</li>We observed the following statistically significant differences:<ul><li>P(pred=1|Male)-P(pred=1|Female)=0.55-0.49=0.053±0.026 (𝛼=0.01,p-value=1e-07)</li></ul><li>Equal Opportunity:</li>We observed the following statistically significant differences:<ul><li>TPR<sub>Male</sub>-TPR<sub>Female</sub>=0.56-0.51=0.047±0.036 (𝛼=0.01,p-value=0.00097)</li></ul><li>Predictive Equality:</li>We observed the following statistically significant differences:<ul><li>FPR<sub>Male</sub>-FPR<sub>Female</sub>=0.54-0.48=0.06±0.036 (𝛼=0.01,p-value=2e-05)</li></ul></ul>
 
-### bias_report.plot_groups()
+**bias_report.plot_groups()**
 
 <p float="left" width="100%">
   <img src="bias_detector/static/bias_report_gender_pie.png" width="40%" />
