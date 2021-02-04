@@ -42,9 +42,9 @@ bias_report.plot_summary()
 **bias_report.plot_summary()**
 
 <p float="left" width="100%">
+    <img src="bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="33%" />
     <img src="bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="33%" />
     <img src="bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="33%" />
-    <img src="bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="33%" />
 </p>
 
 **bias_report.print_summary()**
