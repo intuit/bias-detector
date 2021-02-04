@@ -101,6 +101,8 @@ class BiasReport:
         group_title = group_name.replace('_', ' ').title()
         other_groups_names = get_other_groups_names(group_name, self.privileged_race)
         others_title = other_groups_names[0].replace('_', ' ').title() if len(other_groups_names) == 1 else 'Others'
+        group_title = group_title if group_title != 'Api' else 'API'
+        others_title = others_title if others_title != 'Api' else 'API'
         return group_title, others_title
 
     def plot_summary(self) -> dict:
