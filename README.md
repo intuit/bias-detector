@@ -52,11 +52,9 @@ bias_report = bias_detector.get_bias_report(first_names=first_names, last_names=
 bias_report.plot_summary()
 ```
 
-<p float="left" width="100%">
-    <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="30%" />
-    <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="30%" />
-    <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="30%" />
-</p>
+<img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="50%"/>
 
 ```
 bias_report.print_summary()
@@ -68,10 +66,8 @@ bias_report.print_summary()
 bias_report.plot_groups()
 ```
 
-<p float="left" width="100%">
-  <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_gender_pie.png" width="30%" />
-  <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_race_pie.png" width="30%" />
-</p>
+<img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_gender_pie.png" width="50%" />
+<img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_race_pie.png" width="50%" />
 
 **Show gender/race correlation with model features:**
 
