@@ -35,9 +35,9 @@ class TestBiasReport:
 
     def test_get_summary(self):
         summary = bias_report.get_summary()
-        assert summary['Statistical Parity'][0] == 'P(pred=1|Male)-P(pred=1|Female)=0.55-0.49=0.053±0.026 (𝛼=0.01,p-value=1e-07)'
-        assert summary['Equal Opportunity'][0] == 'TPR<sub>Male</sub>-TPR<sub>Female</sub>=0.56-0.51=0.047±0.036 (𝛼=0.01,p-value=0.00097)'
-        assert summary['Predictive Equality'][0] == 'FPR<sub>Male</sub>-FPR<sub>Female</sub>=0.54-0.48=0.06±0.036 (𝛼=0.01,p-value=2e-05)'
+        assert summary['Statistical Parity'][0] == 'P(pred=1|Male)-P(pred=1|Female)=0.55-0.49=0.053±0.026 (p-value=1e-07)'
+        assert summary['Equal Opportunity'][0] == 'TPR<sub>Male</sub>-TPR<sub>Female</sub>=0.56-0.51=0.047±0.036 (p-value=0.00097)'
+        assert summary['Predictive Equality'][0] == 'FPR<sub>Male</sub>-FPR<sub>Female</sub>=0.54-0.48=0.06±0.036 (p-value=2e-05)'
 
     def test_get_summary_html(self):
         html = bias_report.get_summary_html()

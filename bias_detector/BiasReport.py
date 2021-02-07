@@ -167,14 +167,13 @@ class BiasReport:
                     group_title, others_title = self.get_titles(group_name)
                     group_metric_description = get_bias_metric_description(get_bias_metric(bias_metric), group_title)
                     others_metric_description = get_bias_metric_description(get_bias_metric(bias_metric), others_title)
-                    group_alert = '{group_metric_description}-{others_metric_description}={group_p:.2}-{others_p:.2}={diff:.2}±{ci:.2} (𝛼={alpha:.2},p-value={p_value:.2})'.format(
+                    group_alert = '{group_metric_description}-{others_metric_description}={group_p:.2}-{others_p:.2}={diff:.2}±{ci:.2} (p-value={p_value:.2})'.format(
                         group_metric_description=group_metric_description,
                         others_metric_description=others_metric_description,
                         diff=result.get_diff(),
                         ci=confidence.get_interval(),
                         group_p=result.group_p,
                         others_p=result.others_p,
-                        alpha=BiasConfidence.alpha,
                         p_value=confidence.p_value)
                     groups_alerts.append(group_alert)
         return summary
@@ -192,7 +191,8 @@ class BiasReport:
             if len(groups_alerts) == 0:
                 formatted_summary += '''No bias detected.'''
             else:
-                formatted_summary += 'We observed the following statistically significant differences:'
+                formatted_summary += 'We observed the following statistically significant differences (𝛼={alpha:.2}):'\
+                    .format(alpha=BiasConfidence.alpha)
                 formatted_summary += '''<ul>'''
                 for group_alert in groups_alerts:
                     formatted_summary += '''<li>{group_alert}</li>'''.format(group_alert=group_alert)
