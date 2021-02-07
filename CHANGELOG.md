@@ -7,6 +7,9 @@
 * Version 0.0.7
     * Move report summary html alpha to the headers
     * Remove email addresses from BiasDetector#get_bias_report
+ 
+* Version 0.0.8
+    * Update readme links for PyPi
 
 ### 2021-02-04
 
