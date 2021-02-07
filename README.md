@@ -17,8 +17,7 @@ Using this package you would be able to get insight on whether your model is bia
 
 The Bias Detector is based on statistical data from the US and therefore should be used only with US originated data. We hope to support more countries in the future.
 
-We can be contacted on Stack Overflow using the bias-detector tag. 
-We would appreciate your feedback!
+If you have any questions please [let us know](https://github.com/intuit/bias-detector/discussions).
 
 ### Supported Metrics
 There are many metrics which can possibly be used to detect Bias, we currently support the following three:
