@@ -202,7 +202,7 @@ Sample output from the [Titanic demo](https://github.com/intuit/bias-detector/bl
 bias_detector.fuzzily_get_emails_full_names(emails)
 ```
 
-This method will return a DataFrame with 2 columns: first_name and last_name. Note that the accuracy of this method varies between emails and data sets.
+This method will return a DataFrame with first_name and last_name columns fuzzily extracted from the users emails. Note that the accuracy of this method varies between emails and data sets.
 
 ### Contributing
 
