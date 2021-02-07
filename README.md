@@ -206,7 +206,7 @@ This method will return a DataFrame with first_name and last_name columns fuzzil
 
 ### Contributing
 
-See [CONTRIBUTING.md](https://github.com/intuit/bias-detector/blob/main/CONTRIBUTING.md)
+See [CONTRIBUTING.md](https://github.com/intuit/bias-detector/blob/main/CONTRIBUTING.md).
 
 ### References 
 1. NINAREH MEHRABI, FRED MORSTATTER, NRIPSUTA SAXENA, KRISTINA LERMAN, and ARAM GALSTYAN, 2019. A Survey on Bias and Fairness in Machine Learning.
