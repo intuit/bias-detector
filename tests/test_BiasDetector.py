@@ -33,8 +33,10 @@ class TestBiasDetector:
         assert bias_metrics_results.at[BiasMetric.predictive_equality.name, 'white'].get_diff() == 0.016030656112268837
         assert bias_metrics_results.at[BiasMetric.equal_opportunity.name, 'white'].get_diff() == -0.00666254800184618
         assert bias_metrics_results.at[BiasMetric.statistical_parity.name, 'male'].bias_confidence.p_value == 1.0061059942609127e-07
-        bias_report = bias_detector.get_bias_report(emails=emails_mock, y_true=y_true_mock, y_pred=y_pred_mock,
-                                                    privileged_race='white')
+        full_name = bias_detector.fuzzily_get_emails_full_names(emails_mock)
+        bias_report = bias_detector.get_bias_report(first_names=full_name['first_name'],
+                                                    last_names=full_name['last_name'], y_true=y_true_mock,
+                                                    y_pred=y_pred_mock, privileged_race='white')
         bias_metrics_results = bias_report.bias_metrics_results
         assert bias_metrics_results.at[BiasMetric.statistical_parity.name, 'male'].get_diff() == 0.048666861482969725
 

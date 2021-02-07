@@ -9,7 +9,7 @@ nltk.download('words')
 nltk.download('wordnet')
 
 
-class EmailFullNameExtractor:
+class FuzzyEmailFullNameExtractor:
 
     def __init__(self) -> None:
         self.emails_full_names_functions = [self.get_email_full_name_using_sep,
@@ -23,7 +23,7 @@ class EmailFullNameExtractor:
                                             # self.get_email_last_name_where_first_name_not_found]
         self.words_set = set(nltk.corpus.words.words())
 
-    def get_email_full_name(self, email: str) -> FullName:
+    def fuzzily_get_email_full_name(self, email: str) -> FullName:
         email = email.lower()
         email_prefix = email.split(sep='@', maxsplit=1)[0]
         cleaned = re.sub(r'(?:^[\d]+)|(?:[+.\-_\d]+$)', '', email_prefix)

@@ -1,5 +1,4 @@
 from bias_detector.BiasMetric import BiasMetric
-from bias_detector.EmailFullNameExtractor import EmailFullNameExtractor
 from bias_detector.BiasReport import BiasReport
 from bias_detector.FirstNameModel import FirstNameModel
 from bias_detector.FirstNameZipcodeModel import FirstNameZipcodeModel
@@ -14,7 +13,6 @@ from bias_detector.common import *
 import surgeo
 
 
-
 class BiasDetector:
 
     def __init__(self, country: str = None):
@@ -23,7 +21,7 @@ class BiasDetector:
         """
         if country is None or country.upper() != 'US':
             raise ValueError('Country must be US, other countries are not supported')
-        self.email_full_name_extractor = EmailFullNameExtractor()
+        self.fuzzy_email_full_name_extractor = None
         self.first_name_model = FirstNameModel()
         self.last_name_model = surgeo.SurnameModel()
         self.zip_code_model = surgeo.GeocodeModel()
@@ -32,14 +30,17 @@ class BiasDetector:
         self.last_name_zip_code_model = surgeo.SurgeoModel()
         self.full_name_zip_code_model = FullNameZipcodeModel()
 
-    def get_full_name(self, emails: Sequence[str]) -> pd.DataFrame:
+    def fuzzily_get_emails_full_names(self, emails: Sequence[str]) -> pd.DataFrame:
         """
-        get_full_name - extracts full name from emails
         :param emails: users emails
-        :return: pandas DataFrame with first_name and last_name columns
+        :return: pandas DataFrame with first_name and last_name columns fuzzily extracted from the users emails
         """
+        from bias_detector.FuzzyEmailFullNameExtractor import FuzzyEmailFullNameExtractor
+        emails = self.to_series(emails, 'email', str)
         emails = emails.str.lower()
-        return emails.apply(lambda email: self.email_full_name_extractor.get_email_full_name(email).to_series())
+        if self.fuzzy_email_full_name_extractor is None:
+            self.fuzzy_email_full_name_extractor = FuzzyEmailFullNameExtractor()
+        return emails.apply(lambda email: self.fuzzy_email_full_name_extractor.fuzzily_get_email_full_name(email).to_series())
 
     def get_bias_metrics_impl(self, bias_metric: BiasMetric) -> BiasMetricImpl:
         if bias_metric == BiasMetric.statistical_parity:
@@ -50,14 +51,13 @@ class BiasDetector:
             return FprDiff()
 
     def get_bias_report(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
-                        zip_codes: Sequence[str] = None, emails: Sequence[str] = None, y_true: Sequence[float] = None,
+                        zip_codes: Sequence[str] = None, y_true: Sequence[float] = None,
                         y_pred: Sequence[float] = None, detect_gender_bias: bool = True,
-                        detect_race_bias: dict = True, **kwargs: dict) -> BiasReport:
+                        detect_race_bias: bool = True, **kwargs: dict) -> BiasReport:
         """
         :param first_names: users first names (optional - if last_names/zip_codes are provided)
         :param last_names: users last names (optional - if first_names/zip_codes are provided)
         :param zip_codes: users zip codes (optional - if first_names/last_names are provided)
-        :param emails: users emails (optional - if first_names/last_names are not provided)
         :param y_true: true labels - 0/1 (optional - only some BiasMetric requires it)
         :param y_pred: predicted labels - 0/1
         :param detect_gender_bias: detect gender bias (optional - default True)
@@ -83,7 +83,6 @@ class BiasDetector:
         else:
             input_p_groups = None
         classification_threshold = kwargs.get('classification_threshold', 0.5)
-        emails = self.to_series(emails, 'email', str)
         y_true = self.to_series(y_true, 'y_true', float)
         y_pred = self.to_series(y_pred, 'y_pred', float)
         y_scores = self.to_series(y_scores, 'y_scores', float)
@@ -93,19 +92,13 @@ class BiasDetector:
             raise ValueError('only binary classification is supported, y_pred should contain only 0/1')
         if y_pred is None and y_scores is not None:
             y_pred = [y_score >= classification_threshold for y_score in y_scores]
-        if not self.is_same_length([first_names, last_names, zip_codes, emails, y_true, y_pred, y_scores, input_p_groups]):
+        if not self.is_same_length([first_names, last_names, zip_codes, y_true, y_pred, y_scores, input_p_groups]):
             raise ValueError('Input data has different lengths')
         if y_true is None:
             bias_metrics = [BiasMetric.statistical_parity]
         else:
             bias_metrics = [BiasMetric.statistical_parity, BiasMetric.equal_opportunity, BiasMetric.predictive_equality]
         full_name = None
-        if (emails is not None and len(emails) > 0) \
-            and (first_names is None or len(first_names) == 0) \
-            and (last_names is None or len(last_names) == 0):
-            full_name = self.get_full_name(emails)
-            first_names = full_name['first_name']
-            last_names = full_name['last_name']
         p_groups = input_p_groups if input_p_groups is not None else self.get_p_groups(first_names, last_names, zip_codes, detect_gender_bias, detect_race_bias)
         groups_names = p_groups.columns
         bias_metrics_results = pd.DataFrame(index=[bias_metric.name for bias_metric in bias_metrics], columns=groups_names)
@@ -162,6 +155,8 @@ class BiasDetector:
                      zip_codes: pd.Series = None,
                      detect_gender_bias: bool = True,
                      detect_race_bias: bool = True) -> pd.DataFrame:
+        if first_names is None and last_names is None and zip_codes is None:
+            raise ValueError('first_names/last_names/zip_codes must be provided')
         if not self.is_same_length([first_names, last_names, zip_codes]):
             raise ValueError('Input data has different lengths')
         first_names = self.to_series(first_names, 'first_name', str)
