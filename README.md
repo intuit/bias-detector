@@ -9,13 +9,15 @@
 
 # <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
 [//]: # (description)
-Bias Detector is a python package for detecting bias in machine learning models used for making high stakes decisions.
+Bias Detector is a python package for detecting gender/race bias in binary classification models.
 
-Based on email address/first and last name/zip code the package analyzes the probability of the user belonging to different genders/races. Then, the model predictions per gender/race are compared using various bias metrics.
+Based on first and last name/zip code the package analyzes the probability of the user belonging to different genders/races. Then, the model predictions per gender/race are compared using various bias metrics.
 
-Using this package the data scientist would be able to get insight on whether their model is biased or not.
+Using this package you would be able to get insight on whether your model is biased or not and how much.
 
-The Bias Detector developers can be contacted on Stack Overflow using the bias-detector tag. 
+The Bias Detector is based on statistical data from the US and therefore should be used only with US originated data. We hope to support more countries in the future.
+
+We can be contacted on Stack Overflow using the bias-detector tag. 
 We would appreciate your feedback!
 
 ### Supported Metrics
@@ -23,9 +25,6 @@ There are many metrics which can possibly be used to detect Bias, we currently s
 1. Statistical Parity - tests whether the probability of 2 groups to be classified as belonging to the positive class by the model is equal.
 2. Equal Opportunity - tests whether the True Positive Rates of 2 groups are equal (how likely is the model to predict correctly the positive class for each group).
 2. Predictive Equality - tests whether there False Positive Rates of 2 groups are equal (how likely is the model to predict incorrectly the positive class for each group).
-
-### Attention
-The Bias Detector is based on statistical data from the US and therefore should be used only with US originated data. We hope to support more countries in the future.
 
 ### Usage
 
