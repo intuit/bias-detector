@@ -41,7 +41,7 @@ from bias_detector.BiasDetector import BiasDetector
 bias_report = BiasDetector(country='US').get_bias_report(first_names=first_names, last_names=last_names, zip_codes=zip_codes, y_true=y_true, y_pred=y_pred)
 ```
 
-**Visualize bias report:** 
+**Visualize the bias report:** 
 
 ```
 bias_report.plot_summary()
