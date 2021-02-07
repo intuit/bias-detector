@@ -1,3 +1,5 @@
+import pytest
+
 from bias_detector.BiasDetector import *
 from .common import *
 
@@ -37,10 +39,19 @@ class TestBiasDetector:
         assert bias_metrics_results.at[BiasMetric.statistical_parity.name, 'male'].get_diff() == 0.048666861482969725
 
     def test_get_bias_report_edge_cases(self):
-        assert BiasDetector(country='FR').get_bias_report(first_names=first_names_mock,
-                                             last_names=last_names_mock) is None
+        with pytest.raises(ValueError, match='Country must be US, other countries not supported.'):
+            BiasDetector(country='FR').get_bias_report(first_names=first_names_mock,
+                                                       last_names=last_names_mock)
         assert bias_detector.get_bias_report(first_names=first_names_mock,
                                              last_names=last_names_mock, y_pred=None) is None
+
+    def test_get_features_correlation(self):
+        p_groups = bias_detector.get_p_groups(first_names=first_names_mock, last_names=last_names_mock,
+                                   zip_codes=zip_codes_mock)
+        features = p_groups.rename(columns=lambda x: 'feature_' + x)
+        features_groups_correlation = bias_detector.get_features_groups_correlation(first_names=first_names_mock, last_names=last_names_mock,
+                                                                                    zip_codes=zip_codes_mock, features=features)
+        assert np.diag(features_groups_correlation).sum() == len(p_groups.columns)
 
 def test_get_first_names_p_gender_df():
     assert p_gender_given_first_name_df.at['MOSHE', 'male'] == 1.0

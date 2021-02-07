@@ -139,7 +139,7 @@ class BiasDetector:
                           detect_gender_bias=detect_gender_bias,
                           detect_race_bias=detect_race_bias)
 
-    def get_features_correlation(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
+    def get_features_groups_correlation(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
                                  zip_codes: Sequence[str] = None, features: pd.DataFrame = None) -> pd.DataFrame:
         """
         :param first_names: users first names (optional - if last_names/zip_codes is provided)
@@ -155,7 +155,8 @@ class BiasDetector:
         if not self.is_same_length([first_names, last_names, zip_codes, features]):
             raise ValueError('Input data has different lengths')
         p_groups = self.get_p_groups(first_names, last_names, zip_codes, detect_gender_bias=True, detect_race_bias=True)
-        return features.reset_index(drop=True).corrwith(p_groups)
+        features = features.reset_index(drop=True)
+        return pd.concat([features.corrwith(p_groups[col]).rename(col + '_correlation') for col in p_groups.columns], axis=1)
 
     def to_series(self, data: Sequence[object], name: str, dtype: object) -> pd.Series:
         return None if data is None else pd.Series(data).reset_index(drop=True).rename(name).astype(dtype)
