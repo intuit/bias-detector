@@ -1,3 +1,9 @@
+### 2021-02-07
+
+* Version 0.0.6
+    * Add gender/race correlation test with features
+    * Improve validation that y_pred is of binary classifier
+
 ### 2021-02-04
 
 * Version 0.0.3
