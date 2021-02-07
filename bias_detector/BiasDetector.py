@@ -146,7 +146,7 @@ class BiasDetector:
         :param last_names: users last names (optional - if first_names/zip_codes is provided)
         :param zip_codes: users zip codes (optional - if first_names/last_names is provided)
         :param features: features for correlation test
-        :return: features correlation DataFrame
+        :return: features-groups correlation DataFrame
         """
         if first_names is None and last_names is None and zip_codes is None:
             raise ValueError('first_names/last_names/zip_codes must be provided')
