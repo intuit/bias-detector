@@ -11,6 +11,10 @@
 * Version 0.0.8
     * Update readme links for PyPi
 
+* Version 0.0.9
+    * Update readme images layout for PyPi
+
+
 ### 2021-02-04
 
 * Version 0.0.3
