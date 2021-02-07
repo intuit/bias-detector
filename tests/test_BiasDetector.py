@@ -39,7 +39,7 @@ class TestBiasDetector:
         assert bias_metrics_results.at[BiasMetric.statistical_parity.name, 'male'].get_diff() == 0.048666861482969725
 
     def test_get_bias_report_edge_cases(self):
-        with pytest.raises(ValueError, match='Country must be US, other countries not supported.'):
+        with pytest.raises(ValueError, match='Country must be US, other countries are not supported.'):
             BiasDetector(country='FR').get_bias_report(first_names=first_names_mock,
                                                        last_names=last_names_mock)
         assert bias_detector.get_bias_report(first_names=first_names_mock,

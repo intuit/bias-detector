@@ -22,7 +22,7 @@ class BiasDetector:
         :param country: must be US, other countries not supported
         """
         if country is None or country.upper() != 'US':
-            raise ValueError('Country must be US, other countries not supported.')
+            raise ValueError('Country must be US, other countries are not supported.')
         self.email_full_name_extractor = EmailFullNameExtractor()
         self.first_name_model = FirstNameModel()
         self.last_name_model = surgeo.SurnameModel()
