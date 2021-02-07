@@ -4,10 +4,10 @@
 [![CircleCI](https://circleci.com/gh/intuit/bias-detector.svg?style=shield)](https://circleci.com/gh/intuit/bias-detector)
 [![GitHub release](https://img.shields.io/github/release/intuit/bias-detector.svg)](https://github.com/intuit/bias-detector/releases)
 [![GitHub issues](https://img.shields.io/github/issues/intuit/bias-detector)](https://github.com/intuit/bias-detector/issues)
-[![License](https://img.shields.io/github/license/intuit/bias-detector)](https://github.com/intuit/bias-detector/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/intuit/bias-detector)](https://raw.githubusercontent.com/intuit/bias-detector/master/LICENSE)
 <!--[![PyPI version](https://badge.fury.io/py/bias-detector.svg)](https://badge.fury.io/py/bias-detector)-->
 
-# <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
+# <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/libra.svg" height="50" width="50"/> Bias Detector
 [//]: # (description)
 Bias Detector is a python package for detecting gender/race bias in binary classification models.
 
@@ -53,9 +53,9 @@ bias_report.plot_summary()
 ```
 
 <p float="left" width="100%">
-    <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="30%" />
-    <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="30%" />
-    <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="30%" />
+    <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_statistical_parity.png" width="30%" />
+    <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_equal_opportunity.png" width="30%" />
+    <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_summary_plot_preditive_equality.png" width="30%" />
 </p>
 
 ```
@@ -69,8 +69,8 @@ bias_report.plot_groups()
 ```
 
 <p float="left" width="100%">
-  <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_gender_pie.png" width="30%" />
-  <img src="https://github.com/intuit/bias-detector/blob/main/bias_detector/static/bias_report_race_pie.png" width="30%" />
+  <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_gender_pie.png" width="30%" />
+  <img src="https://raw.githubusercontent.com/intuit/bias-detector/master/bias_detector/static/bias_report_race_pie.png" width="30%" />
 </p>
 
 **Show gender/race correlation with model features:**
@@ -78,7 +78,7 @@ bias_report.plot_groups()
 ```
 bias_detector.get_features_groups_correlation(first_names=first_names, last_names=last_names, zip_codes=zip_codes, features=features)
 ```
-Sample output from the [Titanic demo](https://github.com/intuit/bias-detector/blob/main/demos/titanic/titanic-bias-detection.ipynb):
+Sample output from the [Titanic demo](https://raw.githubusercontent.com/intuit/bias-detector/master/demos/titanic/titanic-bias-detection.ipynb):
 <table>
     <thead>
     <tr>
