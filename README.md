@@ -62,7 +62,7 @@ bias_report.plot_summary()
 bias_report.print_summary()
 ```
 
-<ul><li>Statistical Parity:</li>We observed the following statistically significant differences:<ul><li>P(pred=1|Male)-P(pred=1|Female)=0.55-0.49=0.053±0.026 (𝛼=0.01,p-value=1e-07)</li></ul><li>Equal Opportunity:</li>We observed the following statistically significant differences:<ul><li>TPR<sub>Male</sub>-TPR<sub>Female</sub>=0.56-0.51=0.047±0.036 (𝛼=0.01,p-value=0.00097)</li></ul><li>Predictive Equality:</li>We observed the following statistically significant differences:<ul><li>FPR<sub>Male</sub>-FPR<sub>Female</sub>=0.54-0.48=0.06±0.036 (𝛼=0.01,p-value=2e-05)</li></ul></ul>
+<ul><li>Statistical Parity:</li>We observed the following statistically significant differences (𝛼=0.01):<ul><li>P(pred=1|Male)-P(pred=1|Female)=0.55-0.49=0.053±0.026 (p-value=1e-07)</li></ul><li>Equal Opportunity:</li>We observed the following statistically significant differences (𝛼=0.01):<ul><li>TPR<sub>Male</sub>-TPR<sub>Female</sub>=0.56-0.51=0.047±0.036 (p-value=0.00097)</li></ul><li>Predictive Equality:</li>We observed the following statistically significant differences (𝛼=0.01):<ul><li>FPR<sub>Male</sub>-FPR<sub>Female</sub>=0.54-0.48=0.06±0.036 (p-value=2e-05)</li></ul></ul>
 
 ```
 bias_report.plot_groups()
@@ -195,6 +195,14 @@ Sample output from the [Titanic demo](https://github.com/intuit/bias-detector/bl
     </tr>
     </tbody>
 </table>
+
+**Fuzzy extraction of first/last names from emails:**
+
+```
+bias_detector.fuzzily_get_emails_full_names(emails)
+```
+
+This method will return a DataFrame with 2 columns: first_name and last_name. Note that the accuracy of this method varies between emails and data sets.
 
 ### Contributing
 
