@@ -34,7 +34,7 @@ setuptools.setup(
     url='https://github.com/intuit/bias-detector',
     packages=setuptools.find_packages(),
     python_requires=">=3.6",
-    install_requires=['numpy>=1.19.4', 'pandas>=1.1.5', 'scikit-learn>=0.23.2', 'matplotlib>=3.3.3', 'scipy>=1.5.4', 'surgeo>=1.0.2', 'nltk>=3.5'],
+    install_requires=['numpy==1.19.4', 'pandas==1.1.5', 'scikit-learn==0.23.2', 'matplotlib==3.3.3', 'scipy==1.5.4', 'surgeo==1.0.2', 'nltk==3.5'],
     setup_requires=["pytest-runner"],
     extras_require={
         'test': [
