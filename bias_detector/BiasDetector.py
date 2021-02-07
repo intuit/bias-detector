@@ -54,10 +54,10 @@ class BiasDetector:
                         y_pred: Sequence[float] = None, detect_gender_bias: bool = True,
                         detect_race_bias: dict = True, **kwargs: dict) -> BiasReport:
         """
-        :param first_names: users first names (optional - if last_names/zip_codes is provided)
-        :param last_names: users last names (optional - if first_names/zip_codes is provided)
-        :param zip_codes: users zip codes (optional - if first_names/last_names is provided)
-        :param emails: users emails (optional - if first_names/last_names is not provided)
+        :param first_names: users first names (optional - if last_names/zip_codes are provided)
+        :param last_names: users last names (optional - if first_names/zip_codes are provided)
+        :param zip_codes: users zip codes (optional - if first_names/last_names are provided)
+        :param emails: users emails (optional - if first_names/last_names are not provided)
         :param y_true: true labels - 0/1 (optional - only some BiasMetric requires it)
         :param y_pred: predicted labels - 0/1
         :param detect_gender_bias: detect gender bias (optional - default True)
@@ -137,9 +137,9 @@ class BiasDetector:
     def get_features_groups_correlation(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
                                  zip_codes: Sequence[str] = None, features: pd.DataFrame = None) -> pd.DataFrame:
         """
-        :param first_names: users first names (optional - if last_names/zip_codes is provided)
-        :param last_names: users last names (optional - if first_names/zip_codes is provided)
-        :param zip_codes: users zip codes (optional - if first_names/last_names is provided)
+        :param first_names: users first names (optional - if last_names/zip_codes are provided)
+        :param last_names: users last names (optional - if first_names/zip_codes are provided)
+        :param zip_codes: users zip codes (optional - if first_names/last_names are provided)
         :param features: features for correlation test
         :return: features-groups correlation DataFrame
         """
