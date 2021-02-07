@@ -19,7 +19,7 @@ class BiasDetector:
 
     def __init__(self, country: str = None):
         """
-        :param country: must be US, other countries not supported
+        :param country: must be US, other countries are not supported
         """
         if country is None or country.upper() != 'US':
             raise ValueError('Country must be US, other countries are not supported.')
