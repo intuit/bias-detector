@@ -78,7 +78,7 @@ bias_report.plot_groups()
 ```
 bias_detector.get_features_groups_correlation(first_names=first_names, last_names=last_names, zip_codes=zip_codes, features=features)
 ```
-Sample output from the [Titanic demo](https://raw.githubusercontent.com/intuit/bias-detector/master/demos/titanic/titanic-bias-detection.ipynb):
+Sample output from the [Titanic demo](https://github.com/intuit/bias-detector/blob/main/demos/titanic/titanic-bias-detection.ipynb):
 <table>
     <thead>
     <tr>
