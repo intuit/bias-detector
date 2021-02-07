@@ -22,7 +22,7 @@ class BiasDetector:
         :param country: must be US, other countries are not supported
         """
         if country is None or country.upper() != 'US':
-            raise ValueError('Country must be US, other countries are not supported.')
+            raise ValueError('Country must be US, other countries are not supported')
         self.email_full_name_extractor = EmailFullNameExtractor()
         self.first_name_model = FirstNameModel()
         self.last_name_model = surgeo.SurnameModel()
@@ -66,8 +66,7 @@ class BiasDetector:
         :return: BiasReport
         """
         if not detect_gender_bias and not detect_race_bias:
-            print('Both detect_gender_bias and detect_race_bias are False - returning None')
-            return None
+            raise ValueError('Both detect_gender_bias and detect_race_bias are False')
         y_scores = kwargs.get('y_scores', None)
         input_p_groups = kwargs.get('p_groups', None)
         privileged_race = kwargs.get('privileged_race', None)
@@ -75,14 +74,11 @@ class BiasDetector:
             privileged_race = privileged_race.lower()
         if input_p_groups is not None:
             if type(input_p_groups) != pd.DataFrame:
-                print('''p_groups must be a pd.DataFrame''')
-                return None
+                raise ValueError('''p_groups must be a pd.DataFrame''')
             if detect_gender_bias and not {'male', 'female'}.issubset(set(input_p_groups.columns)):
-                print('''detect_gender_bias=True, p_groups columns must contain: ['male', 'female']''')
-                return None
+                raise ValueError('''detect_gender_bias=True, p_groups columns must contain: ['male', 'female']''')
             if detect_race_bias and not set(races).issubset(set(input_p_groups.columns)):
-                print('''detect_race_bias=True, p_groups columns must contain: ['white', 'black', 'api', 'hispanic', 'native']''')
-                return None
+                raise ValueError('''detect_race_bias=True, p_groups columns must contain: ['white', 'black', 'api', 'hispanic', 'native']''')
             input_p_groups = input_p_groups.reset_index(drop=True)
         else:
             input_p_groups = None
@@ -92,10 +88,9 @@ class BiasDetector:
         y_pred = self.to_series(y_pred, 'y_pred', float)
         y_scores = self.to_series(y_scores, 'y_scores', float)
         if y_pred is None and y_scores is None:
-            print('y_pred/y_scores were not provided - returning None')
-            return None
-        if len(np.unique(y_pred)) > 2:
-            print('y_pred contains more than 2 classes which is not yet supported - returning None')
+            raise ValueError('y_pred/y_scores were not provided')
+        if len(set(np.unique(y_pred)) - {0, 1}) > 0:
+            raise ValueError('only binary classification is supported, y_pred should contain only 0/1')
         if y_pred is None and y_scores is not None:
             y_pred = [y_score >= classification_threshold for y_score in y_scores]
         if not self.is_same_length([first_names, last_names, zip_codes, emails, y_true, y_pred, y_scores, input_p_groups]):
