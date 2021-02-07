@@ -17,7 +17,12 @@ import surgeo
 
 class BiasDetector:
 
-    def __init__(self):
+    def __init__(self, country: str = None):
+        """
+        :param country: must be US, other countries are not supported
+        """
+        if country is None or country.upper() != 'US':
+            raise ValueError('Country must be US, other countries are not supported.')
         self.email_full_name_extractor = EmailFullNameExtractor()
         self.first_name_model = FirstNameModel()
         self.last_name_model = surgeo.SurnameModel()
@@ -44,34 +49,22 @@ class BiasDetector:
         elif bias_metric == BiasMetric.predictive_equality:
             return FprDiff()
 
-    def get_bias_report(self,
-                        first_names: Sequence[str] = None,
-                        last_names: Sequence[str] = None,
-                        zip_codes: Sequence[str] = None,
-                        emails: Sequence[str] = None,
-                        y_true: Sequence[float] = None,
-                        y_pred: Sequence[float] = None,
-                        country: str = None,
-                        detect_gender_bias: bool = True,
-                        detect_race_bias: bool = True,
-                        **kwargs: dict) -> BiasReport:
+    def get_bias_report(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
+                        zip_codes: Sequence[str] = None, emails: Sequence[str] = None, y_true: Sequence[float] = None,
+                        y_pred: Sequence[float] = None, detect_gender_bias: bool = True,
+                        detect_race_bias: dict = True, **kwargs: dict) -> BiasReport:
         """
-        get_bias_report
         :param first_names: users first names (optional - if last_names/zip_codes is provided)
         :param last_names: users last names (optional - if first_names/zip_codes is provided)
         :param zip_codes: users zip codes (optional - if first_names/last_names is provided)
         :param emails: users emails (optional - if first_names/last_names is not provided)
         :param y_true: true labels - 0/1 (optional - only some BiasMetric requires it)
         :param y_pred: predicted labels - 0/1
-        :param country: must be US, other countries not supported
         :param detect_gender_bias: detect gender bias (optional - default True)
         :param detect_race_bias: detect race bias (optional - default True)
         :param kwargs: additional params
         :return: BiasReport
         """
-        if country is None or country.upper() != 'US':
-            print('country must be US, other countries not supported - returning None')
-            return None
         if not detect_gender_bias and not detect_race_bias:
             print('Both detect_gender_bias and detect_race_bias are False - returning None')
             return None
@@ -106,8 +99,7 @@ class BiasDetector:
         if y_pred is None and y_scores is not None:
             y_pred = [y_score >= classification_threshold for y_score in y_scores]
         if not self.is_same_length([first_names, last_names, zip_codes, emails, y_true, y_pred, y_scores, input_p_groups]):
-            print('Input data has different lengths - returning None')
-            return None
+            raise ValueError('Input data has different lengths')
         if y_true is None:
             bias_metrics = [BiasMetric.statistical_parity]
         else:
@@ -147,6 +139,25 @@ class BiasDetector:
                           detect_gender_bias=detect_gender_bias,
                           detect_race_bias=detect_race_bias)
 
+    def get_features_groups_correlation(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
+                                 zip_codes: Sequence[str] = None, features: pd.DataFrame = None) -> pd.DataFrame:
+        """
+        :param first_names: users first names (optional - if last_names/zip_codes is provided)
+        :param last_names: users last names (optional - if first_names/zip_codes is provided)
+        :param zip_codes: users zip codes (optional - if first_names/last_names is provided)
+        :param features: features for correlation test
+        :return: features-groups correlation DataFrame
+        """
+        if first_names is None and last_names is None and zip_codes is None:
+            raise ValueError('first_names/last_names/zip_codes must be provided')
+        if features is None or type(features) != pd.DataFrame:
+            raise ValueError('features DataFrame must be provided')
+        if not self.is_same_length([first_names, last_names, zip_codes, features]):
+            raise ValueError('Input data has different lengths')
+        p_groups = self.get_p_groups(first_names, last_names, zip_codes, detect_gender_bias=True, detect_race_bias=True)
+        features = features.reset_index(drop=True)
+        return pd.concat([features.corrwith(p_groups[col]).rename(col + '_correlation') for col in p_groups.columns], axis=1)
+
     def to_series(self, data: Sequence[object], name: str, dtype: object) -> pd.Series:
         return None if data is None else pd.Series(data).reset_index(drop=True).rename(name).astype(dtype)
 
@@ -156,6 +167,8 @@ class BiasDetector:
                      zip_codes: pd.Series = None,
                      detect_gender_bias: bool = True,
                      detect_race_bias: bool = True) -> pd.DataFrame:
+        if not self.is_same_length([first_names, last_names, zip_codes]):
+            raise ValueError('Input data has different lengths')
         first_names = self.to_series(first_names, 'first_name', str)
         last_names = self.to_series(last_names, 'last_name', str)
         zip_codes = self.to_series(zip_codes, 'zip_code', str)
