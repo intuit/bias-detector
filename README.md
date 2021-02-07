@@ -34,11 +34,17 @@ There are many metrics which can possibly be used to detect Bias, we currently s
 !pip install bias-detector
 ```
 
-**Generate bias report:** 
+**Create a bias detector instance:**
 
 ```
 from bias_detector.BiasDetector import BiasDetector
-bias_report = BiasDetector(country='US').get_bias_report(first_names=first_names, last_names=last_names, zip_codes=zip_codes, y_true=y_true, y_pred=y_pred)
+bias_detector = BiasDetector(country='US')
+```
+
+**Generate bias report:** 
+
+```
+bias_report = bias_detector.get_bias_report(first_names=first_names, last_names=last_names, zip_codes=zip_codes, y_true=y_true, y_pred=y_pred)
 ```
 
 **Visualize the bias report:** 
