@@ -199,6 +199,71 @@ bias_detector.fuzzily_get_emails_full_names(emails)
 
 This method will return a DataFrame with first_name and last_name columns fuzzily extracted from the users emails. Note that the accuracy of this method varies between emails and data sets.
 
+Sample output for synthetic emails:
+
+<table>
+    <thead>
+    <tr>
+        <th>email</th>
+        <th>first_name</th>
+        <th>last_name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>holleybeverly@gmail.com</th>
+        <td>holley</td>
+        <td>beverly</td>
+    </tr>
+    <tr>
+        <th>breweradrienne@gmail.com</th>
+        <td>adrienne</td>
+        <td>brewer</td>
+    </tr>
+    <tr>
+        <th>craigreed@gmail.com</th>
+        <td>craig</td>
+        <td>reed</td>
+    </tr>
+    <tr>
+        <th>battagliahenry@gmail.com</th>
+        <td>henry</td>
+        <td>battaglia</td>
+    </tr>
+    <tr>
+        <th>apaget@gmail.com</th>
+        <td></td>
+        <td>paget</td>
+    </tr>
+    <tr>
+        <th>briana@gmail.com</th>
+        <td>briana</td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>apena@gmail.com</th>
+        <td></td>
+        <td>pena</td>
+    </tr>
+    <tr>
+        <th>jacka@gmail.com</th>
+        <td></td>
+        <td>jacka</td>
+    </tr>
+    <tr>
+        <th>mattiea@gmail.com</th>
+        <td>mattie</td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>patricia_calder@gmail.com</th>
+        <td>patricia</td>
+        <td>calder</td>
+    </tr>
+    </tbody>
+</table>
+
+
 ### Contributing
 
 See [CONTRIBUTING.md](https://github.com/intuit/bias-detector/blob/main/CONTRIBUTING.md).
