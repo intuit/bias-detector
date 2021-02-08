@@ -14,6 +14,8 @@
 * Version 0.0.9
     * Update readme images layout for PyPi
 
+* Version 0.0.10
+    * Change 'estimated group sizes' to 'estimated groups sizes'
 
 ### 2021-02-04
 
