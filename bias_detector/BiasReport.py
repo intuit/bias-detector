@@ -37,7 +37,7 @@ class BiasReport:
             race_group_sizes = self.estimated_groups_sizes[races + ['race_unknown']]
             race_group_percentages = pd.Series(race_group_sizes.values / race_group_sizes.sum()).apply(lambda fraction: '{fraction:.2%}'.format(fraction=fraction))
             if len(race_group_sizes) > 0:
-                plt.title('Race estimated group sizes')
+                plt.title('Race estimated groups sizes')
                 plt.pie(race_group_sizes.values)
                 plt.legend(labels=race_group_sizes.index.values + ' - ' + race_group_percentages)
                 plt.show()
@@ -45,7 +45,7 @@ class BiasReport:
             gender_group_sizes = self.estimated_groups_sizes[['male', 'female', 'gender_unknown']]
             gender_group_percentages = pd.Series(gender_group_sizes.values / gender_group_sizes.sum()).apply(lambda fraction: '{fraction:.2%}'.format(fraction=fraction))
             if len(gender_group_sizes) > 0:
-                plt.title('Gender estimated group sizes')
+                plt.title('Gender estimated groups sizes')
                 plt.pie(gender_group_sizes.values)
                 plt.legend(labels=gender_group_sizes.index.values + ' - ' + gender_group_percentages)
                 plt.show()
