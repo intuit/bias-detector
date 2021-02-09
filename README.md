@@ -3,6 +3,7 @@
 [![codecov](https://codecov.io/gh/intuit/bias-detector/branch/main/graph/badge.svg)](https://codecov.io/gh/intuit/bias-detector)
 [![CircleCI](https://circleci.com/gh/intuit/bias-detector.svg?style=shield)](https://circleci.com/gh/intuit/bias-detector)
 [![License](https://img.shields.io/github/license/intuit/bias-detector)](https://raw.githubusercontent.com/intuit/bias-detector/master/LICENSE)
+[![PiPi stats](https://img.shields.io/pypi/dm/bias-detector.svg)](https://pypistats.org/packages/bias-detector)
 [![PyPI version](https://badge.fury.io/py/bias-detector.svg)](https://badge.fury.io/py/bias-detector)
 <!--[![GitHub release](https://img.shields.io/github/release/intuit/bias-detector.svg)](https://github.com/intuit/bias-detector/releases)-->
 
