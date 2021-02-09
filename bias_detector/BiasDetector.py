@@ -126,12 +126,14 @@ class BiasDetector:
                           detect_race_bias=detect_race_bias)
 
     def get_features_groups_correlation(self, first_names: Sequence[str] = None, last_names: Sequence[str] = None,
-                                 zip_codes: Sequence[str] = None, features: pd.DataFrame = None) -> pd.DataFrame:
+                                        zip_codes: Sequence[str] = None, features: pd.DataFrame = None,
+                                        method: str = 'pearson') -> pd.DataFrame:
         """
         :param first_names: users first names (optional - if last_names/zip_codes are provided)
         :param last_names: users last names (optional - if first_names/zip_codes are provided)
         :param zip_codes: users zip codes (optional - if first_names/last_names are provided)
         :param features: features for correlation test
+        :param method: 'pearson'/'kendall'/'spearman' (default - 'pearson')
         :return: features-groups correlation DataFrame
         """
         if first_names is None and last_names is None and zip_codes is None:
@@ -140,9 +142,11 @@ class BiasDetector:
             raise ValueError('features DataFrame must be provided')
         if not self.__is_same_length([first_names, last_names, zip_codes, features]):
             raise ValueError('Input data has different lengths')
+        if method not in {'pearson', 'kendall', 'spearman'}:
+            raise ValueError("method should be 'pearson'/'kendall'/'spearman'")
         p_groups = self.get_p_groups(first_names, last_names, zip_codes, detect_gender_bias=True, detect_race_bias=True)
         features = features.reset_index(drop=True)
-        return pd.concat([features.corrwith(p_groups[col]).rename(col + '_correlation') for col in p_groups.columns], axis=1)
+        return pd.concat([features.corrwith(other=p_groups[col], method=method).rename(col + '_correlation') for col in p_groups.columns], axis=1)
 
     def to_series(self, data: Sequence[object], name: str, dtype: object) -> pd.Series:
         return None if data is None else pd.Series(data).reset_index(drop=True).rename(name).astype(dtype)
