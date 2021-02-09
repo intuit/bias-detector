@@ -1,9 +1,9 @@
 from bias_detector.BiasMetric import BiasMetric
 from bias_detector.BiasReport import BiasReport
-from bias_detector.FirstNameModel import FirstNameModel
-from bias_detector.FirstNameZipcodeModel import FirstNameZipcodeModel
-from bias_detector.FullNameModel import FullNameModel
-from bias_detector.FullNameZipcodeModel import FullNameZipcodeModel
+from bias_detector.models.FirstNameModel import FirstNameModel
+from bias_detector.models.FirstNameZipcodeModel import FirstNameZipcodeModel
+from bias_detector.models.FullNameModel import FullNameModel
+from bias_detector.models.FullNameZipcodeModel import FullNameZipcodeModel
 from bias_detector.bias_metrics.BiasMetricImpl import BiasMetricImpl
 from bias_detector.bias_metrics.BiasMetricInput import BiasMetricInput
 from bias_detector.bias_metrics.FprDiff import FprDiff
@@ -35,14 +35,14 @@ class BiasDetector:
         :param emails: users emails
         :return: pandas DataFrame with first_name and last_name columns fuzzily extracted from the users emails
         """
-        from bias_detector.FuzzyEmailFullNameExtractor import FuzzyEmailFullNameExtractor
+        from bias_detector.fuzzy_names_from_emails.FuzzyEmailFullNameExtractor import FuzzyEmailFullNameExtractor
         emails = self.to_series(emails, 'email', str)
         emails = emails.str.lower()
         if self.fuzzy_email_full_name_extractor is None:
             self.fuzzy_email_full_name_extractor = FuzzyEmailFullNameExtractor()
         return emails.apply(lambda email: self.fuzzy_email_full_name_extractor.fuzzily_get_email_full_name(email).to_series())
 
-    def get_bias_metrics_impl(self, bias_metric: BiasMetric) -> BiasMetricImpl:
+    def __get_bias_metrics_impl(self, bias_metric: BiasMetric) -> BiasMetricImpl:
         if bias_metric == BiasMetric.statistical_parity:
             return PositivePredProbDiff()
         if bias_metric == BiasMetric.equal_opportunity:
@@ -92,7 +92,7 @@ class BiasDetector:
             raise ValueError('only binary classification is supported, y_pred should contain only 0/1')
         if y_pred is None and y_scores is not None:
             y_pred = [y_score >= classification_threshold for y_score in y_scores]
-        if not self.is_same_length([first_names, last_names, zip_codes, y_true, y_pred, y_scores, input_p_groups]):
+        if not self.__is_same_length([first_names, last_names, zip_codes, y_true, y_pred, y_scores, input_p_groups]):
             raise ValueError('Input data has different lengths')
         if y_true is None:
             bias_metrics = [BiasMetric.statistical_parity]
@@ -103,7 +103,7 @@ class BiasDetector:
         groups_names = p_groups.columns
         bias_metrics_results = pd.DataFrame(index=[bias_metric.name for bias_metric in bias_metrics], columns=groups_names)
         for bias_metric in bias_metrics:
-            bias_metrics_impl = self.get_bias_metrics_impl(bias_metric)
+            bias_metrics_impl = self.__get_bias_metrics_impl(bias_metric)
             metric_input = BiasMetricInput(p_groups, y_true, y_pred, y_scores, privileged_race)
             bias_metric_output = bias_metrics_impl.execute(metric_input)
             results = bias_metric_output.results
@@ -140,7 +140,7 @@ class BiasDetector:
             raise ValueError('first_names/last_names/zip_codes must be provided')
         if features is None or type(features) != pd.DataFrame:
             raise ValueError('features DataFrame must be provided')
-        if not self.is_same_length([first_names, last_names, zip_codes, features]):
+        if not self.__is_same_length([first_names, last_names, zip_codes, features]):
             raise ValueError('Input data has different lengths')
         p_groups = self.get_p_groups(first_names, last_names, zip_codes, detect_gender_bias=True, detect_race_bias=True)
         features = features.reset_index(drop=True)
@@ -150,19 +150,19 @@ class BiasDetector:
         return None if data is None else pd.Series(data).reset_index(drop=True).rename(name).astype(dtype)
 
     def get_p_groups(self,
-                     first_names: pd.Series = None,
-                     last_names: pd.Series = None,
-                     zip_codes: pd.Series = None,
-                     detect_gender_bias: bool = True,
-                     detect_race_bias: bool = True) -> pd.DataFrame:
+                       first_names: pd.Series = None,
+                       last_names: pd.Series = None,
+                       zip_codes: pd.Series = None,
+                       detect_gender_bias: bool = True,
+                       detect_race_bias: bool = True) -> pd.DataFrame:
         if first_names is None and last_names is None and zip_codes is None:
             raise ValueError('first_names/last_names/zip_codes must be provided')
-        if not self.is_same_length([first_names, last_names, zip_codes]):
+        if not self.__is_same_length([first_names, last_names, zip_codes]):
             raise ValueError('Input data has different lengths')
         first_names = self.to_series(first_names, 'first_name', str)
         last_names = self.to_series(last_names, 'last_name', str)
         zip_codes = self.to_series(zip_codes, 'zip_code', str)
-        user_data_count = self.get_user_data_count([first_names, last_names, zip_codes])
+        user_data_count = self.__get_user_data_count([first_names, last_names, zip_codes])
         p_groups = pd.DataFrame(index=list(range(user_data_count)))
         if first_names is not None:
             first_names = first_names.str.upper()
@@ -229,15 +229,15 @@ class BiasDetector:
         p_groups.fillna(0.0, inplace=True)
         return p_groups
 
-    def is_same_length(self, sequences: Sequence[Sequence]) -> bool:
-        length = self.get_user_data_count(sequences)
+    def __is_same_length(self, sequences: Sequence[Sequence]) -> bool:
+        length = self.__get_user_data_count(sequences)
         if length is not None:
             for sequence in sequences:
                 if sequence is not None and len(sequence) != length:
                     return False
         return True
 
-    def get_user_data_count(self, sequences):
+    def __get_user_data_count(self, sequences):
         length = None
         for sequence in sequences:
             if sequence is not None:

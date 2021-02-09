@@ -1,3 +1,8 @@
+### 2021-02-08
+
+* Version 0.0.11
+    * General refactor of folders and private methods
+
 ### 2021-02-07
 
 * Version 0.0.6

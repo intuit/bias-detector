@@ -50,7 +50,7 @@ class TestBiasDetector:
 
     def test_get_features_correlation(self):
         p_groups = bias_detector.get_p_groups(first_names=first_names_mock, last_names=last_names_mock,
-                                   zip_codes=zip_codes_mock)
+                                                zip_codes=zip_codes_mock)
         features = p_groups.rename(columns=lambda x: 'feature_' + x)
         features_groups_correlation = bias_detector.get_features_groups_correlation(first_names=first_names_mock, last_names=last_names_mock,
                                                                                     zip_codes=zip_codes_mock, features=features)

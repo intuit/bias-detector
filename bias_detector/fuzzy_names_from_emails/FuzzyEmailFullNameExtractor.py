@@ -1,7 +1,7 @@
 import re
 
 from bias_detector.common import *
-from bias_detector.FullName import FullName
+from bias_detector.fuzzy_names_from_emails.FullName import FullName
 
 import nltk
 

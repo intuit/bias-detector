@@ -1,4 +1,4 @@
-from bias_detector.FuzzyEmailFullNameExtractor import FuzzyEmailFullNameExtractor
+from bias_detector.fuzzy_names_from_emails.FuzzyEmailFullNameExtractor import FuzzyEmailFullNameExtractor
 
 extractor = FuzzyEmailFullNameExtractor()
 
