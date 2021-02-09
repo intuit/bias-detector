@@ -13,7 +13,6 @@ class BiasReport:
     def __init__(self,
                  bias_metrics_results: pd.DataFrame,
                  estimated_groups_sizes: pd.Series,
-                 full_name: pd.DataFrame,
                  y_true: pd.Series,
                  y_pred: pd.Series,
                  y_scores: pd.Series,
@@ -23,7 +22,6 @@ class BiasReport:
                  detect_race_bias: bool) -> None:
         self.bias_metrics_results = bias_metrics_results
         self.estimated_groups_sizes = estimated_groups_sizes
-        self.full_name = full_name
         self.y_true = y_true
         self.y_pred = y_pred
         self.y_scores = y_scores

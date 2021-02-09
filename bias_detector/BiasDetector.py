@@ -98,7 +98,6 @@ class BiasDetector:
             bias_metrics = [BiasMetric.statistical_parity]
         else:
             bias_metrics = [BiasMetric.statistical_parity, BiasMetric.equal_opportunity, BiasMetric.predictive_equality]
-        full_name = None
         p_groups = input_p_groups if input_p_groups is not None else self.get_p_groups(first_names, last_names, zip_codes, detect_gender_bias, detect_race_bias)
         groups_names = p_groups.columns
         bias_metrics_results = pd.DataFrame(index=[bias_metric.name for bias_metric in bias_metrics], columns=groups_names)
@@ -118,7 +117,6 @@ class BiasDetector:
         estimated_groups_sizes = estimated_groups_sizes.astype(int)
         return BiasReport(bias_metrics_results=bias_metrics_results,
                           estimated_groups_sizes=estimated_groups_sizes,
-                          full_name=full_name,
                           y_true=y_true,
                           y_pred=y_pred,
                           y_scores=y_scores,
