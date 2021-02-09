@@ -55,6 +55,19 @@ class TestBiasDetector:
         features_groups_correlation = bias_detector.get_features_groups_correlation(first_names=first_names_mock, last_names=last_names_mock,
                                                                                     zip_codes=zip_codes_mock, features=features)
         assert np.diag(features_groups_correlation).sum() == len(p_groups.columns)
+        with pytest.raises(ValueError, match='first_names/last_names/zip_codes must be provided'):
+            bias_detector.get_features_groups_correlation(first_names=None, last_names=None,
+                                                          zip_codes=None, features=features)
+        with pytest.raises(ValueError, match='features DataFrame must be provided'):
+            bias_detector.get_features_groups_correlation(first_names=first_names_mock, last_names=last_names_mock,
+                                                          zip_codes=zip_codes_mock, features=None)
+        with pytest.raises(ValueError, match='Input data has different lengths'):
+            bias_detector.get_features_groups_correlation(first_names=first_names_mock.head(1), last_names=last_names_mock,
+                                                          zip_codes=zip_codes_mock, features=features)
+        with pytest.raises(ValueError, match="method should be 'pearson'/'kendall'/'spearman'"):
+            bias_detector.get_features_groups_correlation(first_names=first_names_mock, last_names=last_names_mock,
+                                                          zip_codes=zip_codes_mock, features=features, method='other')
+
 
 def test_get_first_names_p_gender_df():
     assert p_gender_given_first_name_df.at['MOSHE', 'male'] == 1.0
