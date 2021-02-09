@@ -12,7 +12,7 @@ Bias Detector is a python package for detecting gender/race bias in binary class
 
 Based on first and last name/zip code the package analyzes the probability of the user belonging to different genders/races. Then, the model predictions per gender/race are compared using various bias metrics.
 
-Using this package you would be able to get insight on whether your model is biased or not and how much.
+Using this package you will be able to gain insight into whether your model is biased or not, and if so, how much bias was found.
 
 The Bias Detector is based on statistical data from the US and therefore should be used only with US originated data. We hope to support more countries in the future.
 
