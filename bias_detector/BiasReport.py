@@ -197,3 +197,12 @@ class BiasReport:
                 formatted_summary += '''</ul>'''
         formatted_summary += '''</ul>'''
         return formatted_summary
+
+    def get_bias_metrics_results(self):
+        return self.bias_metrics_results
+
+    def get_estimated_groups_sizes(self):
+        return self.estimated_groups_sizes
+
+    def get_p_groups(self):
+        return self.p_groups

@@ -42,3 +42,12 @@ class TestBiasReport:
     def test_get_summary_html(self):
         html = bias_report.get_summary_html()
         assert len(html) > 0
+
+    def test_get_bias_metrics_results(self):
+        assert len(bias_report.get_bias_metrics_results()) > 0
+
+    def test_get_estimated_groups_sizes(self):
+        assert len(bias_report.get_estimated_groups_sizes()) > 0
+
+    def test_get_p_groups(self):
+        assert len(bias_report.get_p_groups()) > 0
