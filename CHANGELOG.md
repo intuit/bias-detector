@@ -1,3 +1,8 @@
+### 2021-04-22
+
+* Version 0.0.12
+  * Use pooled variance
+
 ### 2021-02-08
 
 * Version 0.0.11
