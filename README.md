@@ -4,6 +4,7 @@
 [![CircleCI](https://circleci.com/gh/intuit/bias-detector.svg?style=shield)](https://circleci.com/gh/intuit/bias-detector)
 [![License](https://img.shields.io/github/license/intuit/bias-detector)](https://raw.githubusercontent.com/intuit/bias-detector/master/LICENSE)
 [![PyPI version](https://img.shields.io/pypi/v/bias-detector)](https://pypi.org/project/bias-detector)
+[![Downloads](https://pepy.tech/badge/bias-detector)](https://pepy.tech/project/bias-detector)
 <!--[![PiPi stats](https://img.shields.io/pypi/dm/bias-detector.svg)](https://pypistats.org/packages/bias-detector)-->
 <!--[![GitHub release](https://img.shields.io/github/release/intuit/bias-detector.svg)](https://github.com/intuit/bias-detector/releases)-->
 
