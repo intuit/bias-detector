@@ -16,7 +16,7 @@ Based on first and last name/zip code the package analyzes the probability of th
 
 Using this package you will be able to gain insight into whether your model is biased or not, and if so, how much bias was found.
 
-The Bias Detector is based on statistical data from the US and therefore should be used only with US originated data. We hope to support more countries in the future.
+The Bias Detector is based on statistical data from the US and therefore it performs best with US originated data. However, it is possible to optimize the package for other countries by adding the relevant statistical information. If you have such data you can open a Pull Request to add it to the package. 
 
 If you have any questions please [let us know](https://github.com/intuit/bias-detector/discussions).
 
