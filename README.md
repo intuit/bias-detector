@@ -18,7 +18,7 @@ Using this package you will be able to gain insight into whether your model is b
 
 The Bias Detector is based on statistical data from the US, and therefore it performs best with US originated data. However, it is possible to optimize the package for other countries by adding the relevant statistical information. If you have such data, you can open a Pull Request to add it to the package.
 
-If you have any questions please [let us know](https://github.com/intuit/bias-detector/discussions). You can learn more about the our reaserch [here](https://www.sciencedirect.com/science/article/pii/S2666659621000135).
+If you have any questions please [let us know](https://github.com/intuit/bias-detector/discussions). You can learn more about our reaserch [here](https://www.sciencedirect.com/science/article/pii/S2666659621000135).
 
 ### Supported Metrics
 There are many metrics which can possibly be used to detect Bias, we currently support the following three:
