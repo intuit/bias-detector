@@ -18,7 +18,7 @@ Using this package you will be able to gain insight into whether your model is b
 
 The Bias Detector is based on statistical data from the US, and therefore it performs best with US originated data. However, it is possible to optimize the package for other countries by adding the relevant statistical information. If you have such data, you can open a Pull Request to add it to the package.
 
-If you have any questions please [let us know](https://github.com/intuit/bias-detector/discussions).
+If you have any questions please [let us know](https://github.com/intuit/bias-detector/discussions). You can learn more about the our reaserch [here](https://www.sciencedirect.com/science/article/pii/S2666659621000135).
 
 ### Supported Metrics
 There are many metrics which can possibly be used to detect Bias, we currently support the following three:
@@ -271,7 +271,8 @@ Sample output for synthetic emails:
 See [CONTRIBUTING.md](https://github.com/intuit/bias-detector/blob/main/CONTRIBUTING.md).
 
 ### References 
-1. NINAREH MEHRABI, FRED MORSTATTER, NRIPSUTA SAXENA, KRISTINA LERMAN, and ARAM GALSTYAN, 2019. A Survey on Bias and Fairness in Machine Learning.
-2. Moritz Hardt, Eric Price, Nathan Srebro, 2016. Equality of Opportunity in Supervised Learning.
-3. Ioan Voicu (2018) Using First Name Information to Improve Race and Ethnicity Classification, Statistics and Public Policy, 5:1, 1-13, DOI: 10.1080/2330443X.2018.1427012
+1. Elhanan Mishraky, Aviv Ben Arie, Yair Horesh, Shir Meir Lador, 2021. Bias Detection by Using Name Disparity Tables Across Protected Groups, DOI: 10.1016/j.jrt.2021.100020
+2. Ninareh Mehrabi, Fred Morstatter, Nripsuta Saxena, Kristina Lerman, Aram Galstyan, 2019. A Survey on Bias and Fairness in Machine Learning.
+3. Moritz Hardt, Eric Price, Nathan Srebro, 2016. Equality of Opportunity in Supervised Learning.
+4. Ioan Voicu (2018) Using First Name Information to Improve Race and Ethnicity Classification, Statistics and Public Policy, 5:1, 1-13, DOI: 10.1080/2330443X.2018.1427012
 
