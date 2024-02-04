@@ -1,3 +1,8 @@
+### 2024-02-04
+
+* Version 0.0.13
+  * Loose requirements
+
 ### 2021-04-22
 
 * Version 0.0.12
