@@ -1,8 +1,5 @@
 ### 2024-02-04
 
-* Version 0.0.14
-  * Align requirements.txt and setup.py
-
 * Version 0.0.13
   * Loose requirements
 
