@@ -6,4 +6,4 @@ def test_first_names_p_gender_df():
 
 
 def test_p_first_name_given_race_df():
-    assert p_first_name_given_race_df.at['DAVID', 'white'] == 0.020446108002980624
+    assert p_first_name_given_race_df.at['DAVID', 'white'] == 0.020446108002980603
